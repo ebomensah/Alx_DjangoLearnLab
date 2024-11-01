@@ -1,5 +1,6 @@
+From bookshelf.models import Book
 #Command
-Book.objects.delete()
+book.delete()
 
 #Confirm deletion
 Book.objects.all()
