@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title> EMPLOYEES </title>
+</head>
+<body>
+    <h1>EMPLOYEE LIST</h1>
+    <h2> Here's a list of available employees</h2>
+    <ul>
+        {%for employee in employee_list%}
+            <li>{{employee.name}} from {{employee.department}}</li>
+        {%endfor%}
+    </ul>
+    <img src="https://www.shutterstock.com/shutterstock/photos/1203116578/display_1500/stock-vector-group-of-young-happy-dancing-people-or-male-and-female-dancers-isolated-on-white-background-1203116578.jpg"
+        alt="men and women dancing">
+
+</body>
+</html>
