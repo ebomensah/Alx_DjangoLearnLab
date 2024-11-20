@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title> REGISTER </title>
+</head>
+<body>
+    <h1>Registration page!</h1>
+
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <p1> There are errors in the form </p1>
+        {% endif %}
+
+        {{ form }}
+
+        <input type = 'submit' value='Register'>
+        </form>
+</body>
+</html>
