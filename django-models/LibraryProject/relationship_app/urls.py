@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import list_books, LibraryListView 
+from .views import list_books, LibraryDetailView 
 from . import views
 
 urlpatterns=[
     path('list_books/', list_books, name = 'list_books'),
-    path('library_detail/', LibraryListView.as_view(), name = 'library_detail'),
+    path('library_detail/', LibraryDetailView.as_view(), name = 'library_detail'),
     path('register/', views.register_view, name = 'register'),
     path('index/', views.index_view, name = 'index'),
     path('userlogin/', views.LoginView.as_view(template_name="login.html"), name='login'),
