@@ -52,7 +52,7 @@ def user_is_admin(user):
     return user.profile.role == 'Admin'
 
 @user_passes_test(user_is_admin)
-def Admin_view(request):
+def admin_view(request):
     return render(request, 'relationship_app/myadmin_view.html')
 
 def user_is_librarian(user):
