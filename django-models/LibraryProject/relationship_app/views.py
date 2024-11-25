@@ -52,14 +52,14 @@ def user_is_admin(user):
     return user.profile.role == 'Admin'
 
 @user_passes_test(user_is_admin)
-def myadmin_view(request):
+def Admin_view(request):
     return render(request, 'relationship_app/myadmin_view.html')
 
 def user_is_librarian(user):
     return user.profile.role == 'Librarian'
 
 @user_passes_test(user_is_librarian)
-def librarian_view(request):
+def Librarian_view(request):
     return render(request, 'relationship_app/librarian_view.html')
 
 
@@ -68,7 +68,7 @@ def user_is_member(user):
 
 
 @user_passes_test(user_is_member)
-def member_view(request):
+def Member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
 #Create a new book (Add)
