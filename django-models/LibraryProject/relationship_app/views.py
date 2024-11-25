@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Library, Book, UserProfile
-from django.views.generic import DetailView, ListView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login, authenticate
@@ -41,7 +41,7 @@ def list_books(request):
     books = Book.objects.all()
     return render (request, 'relationship_app/list_books.html', {'books':books})
 
-class LibraryListView(ListView):
+class LibraryListView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
 
