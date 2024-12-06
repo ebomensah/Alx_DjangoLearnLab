@@ -1,6 +1,6 @@
 from django.db import models
 
-class Author (models.Model):
+class Author(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -10,7 +10,7 @@ class Author (models.Model):
 #    The 'name' field stores the author's name.
  #   """
 
-class Book (models.Model):
+class Book(models.Model):
 
     #Model to represent a book.
    # The 'title' field stores the book's title.
