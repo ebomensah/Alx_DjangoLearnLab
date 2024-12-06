@@ -2,7 +2,7 @@ from django.db.models import ForeignKey
 from .models import Book, Author
 from rest_framework import serializers
 
-class Bookserializer (serializers.ModelSerializer):
+class Bookserializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = '__all__'
@@ -17,7 +17,7 @@ class Bookserializer (serializers.ModelSerializer):
             raise serializers.ValidationError("Publication year cannot be in the future")
         return value
 
-class AuthorSerializer (serializers.ModelSerializer):
+class AuthorSerializer(serializers.ModelSerializer):
 
       #Serializer for the Author model.
      #Includes the 'name' field and a nested list of books for the related books.
