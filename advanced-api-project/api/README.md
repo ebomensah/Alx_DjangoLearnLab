@@ -24,3 +24,21 @@ Example API Requests:
 Filter by author: /api/books/?author=John+Doe
 Search for a book: /api/books/?search=python
 Order by publication year descending: /api/books/?ordering=-publication_year
+
+
+
+## Testing Strategy:
+
+Unit Tests: These test the core functionality of each API endpoint, ensuring that CRUD operations work, that the filters and ordering function correctly, and that permissions are enforced.
+Integration Tests: Ensure that the API integrates smoothly with the database and other parts of the application.
+Authentication & Authorization: Ensure that only users with the proper roles (e.g., admin) can perform certain actions (e.g., delete).
+Edge Cases: Test cases for invalid data, unauthorized access, and boundary conditions.
+Test Cases:
+test_create_book: Verifies that a book can be created by an authenticated user.
+test_create_book_without_permission: Ensures that a non-authenticated user cannot create a book.
+test_read_books: Verifies that all books can be retrieved.
+test_update_book: Ensures that a book can be updated.
+test_delete_book: Verifies that a book can be deleted.
+test_permission_admin: Ensures that only admins can delete books.
+test_filter_books: Verifies filtering by title works correctly.
+test_order_books: Ensures that ordering by published date works as expected.

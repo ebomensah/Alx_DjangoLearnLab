@@ -18,7 +18,7 @@ class BookFilter(django_filters.FilterSet):
         model = Book
         fields = ['title', 'author', 'publication_year']
 
-class BookListView(generic.ListCreateAPIView):
+class BookListView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = []  # No authentication required for listing
@@ -29,18 +29,18 @@ class BookListView(generic.ListCreateAPIView):
     ordering = ['title']
 
 
-class BookDetailView(generic.RetrieveAPIView):
+class BookDetailView(generics.RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = []  # No authentication required for retrieving details
 # Create your views here.
 
-class BookCreateView(generic.CreateAPIView):
+class BookCreateView(generics.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]  # Only authenticated users can create
 
-class BookUpdateView(generic.UpdateAPIView):
+class BookUpdateView(generics.UpdateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]  # Only authenticated users can update
@@ -48,7 +48,7 @@ class BookUpdateView(generic.UpdateAPIView):
     def perform_update(self, serializer):
         instance = serializer.save()
 
-class BookDeleteView(generic.DestroyAPIView):
+class BookDeleteView(generics.DestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]  # Only authenticated users can delete
