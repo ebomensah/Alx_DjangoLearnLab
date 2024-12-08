@@ -3,9 +3,11 @@ from django.views import generic
 from .models import Book
 from .serializers import BookSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-import django_filters
+from django_filters import rest_framework
+from rest_framework import generics
 from rest_framework.filters import OrderingFilter, SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
+import django_filters
 
 class BookFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr='icontains')
