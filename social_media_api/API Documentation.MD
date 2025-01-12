@@ -50,3 +50,22 @@ GET /api/comments/?post=1
         },
         ...
       ]
+
+Follow a User
+Endpoint: POST /accounts/follow/<user_id>/
+Description: Follows the user with the given user_id.
+Request Body: None
+Response:
+200 OK: Successfully followed the user.
+400 Bad Request: You cannot follow yourself.
+Unfollow a User
+Endpoint: POST /accounts/unfollow/<user_id>/
+Description: Unfollows the user with the given user_id.
+Request Body: None
+Response:
+200 OK: Successfully unfollowed the user.
+400 Bad Request: You cannot unfollow yourself.
+View Feed
+Endpoint: GET /posts/feed/
+Description: Retrieves a feed of posts from users the current user follows, ordered by creation date.
+Response: List of posts with fields such as id, user, content, and created_at.

@@ -5,16 +5,27 @@ from rest_framework import serializers, status
 from rest_framework.authtoken.models import Token
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField()
-    
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'bio', 'profile_picture', 'password']
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'profile_picture': {'required':False},
+        }
 
     def create(self, validated_data):
-        user = get_user_model().objects.create_user(*validated_data)
-        Token.objects.create(user=user)
-        return user
+        user = CustomUser.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
+            bio=validated_data.get('bio', ''),
+            profile_picture=validated_data.get('profile_picture', None),
+        )
+        token, created = Token.objects.get_or_create(user=user)
+        user.token = token.key
+        return user 
     
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
