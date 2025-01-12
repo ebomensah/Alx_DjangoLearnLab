@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class CustomUser (AbstractUser):
+class CustomUser(AbstractUser):
     username = models.CharField(max_length=220, unique=True)
     email = models.EmailField()
     date_joined=models.DateTimeField(auto_now_add=True)

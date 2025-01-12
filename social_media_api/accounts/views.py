@@ -9,17 +9,17 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response 
-from .serializers import UserSerializer
+from .serializers import CustomUserSerializer
 
 class profile_view(TemplateView):
     template_name = 'accounts/profile.html'
 
 class UserRegistrationView(generics.CreateAPIView):
-    serializer_class= UserSerializer
+    serializer_class= CustomUserSerializer
     permission_classes= [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
-        serializer= UserSerializer(data=request.data)
+        serializer= CustomUserSerializer(data=request.data)
 
         if serializer.is_valid():
             user = serializer.save()
