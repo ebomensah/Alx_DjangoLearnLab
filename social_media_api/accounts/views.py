@@ -54,7 +54,8 @@ class LoginView(APIView):
 class LogoutView(APIView):
     next_page = 'login'
 
-class FollowUserView(APIView):
+class FollowUserView(generics.GenericAPIView):
+    queryset = CustomUser.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
     @action (detail=True, methods={'post'})
@@ -67,7 +68,8 @@ class FollowUserView(APIView):
         return Response({"detail": f"Successfully followed {user_to_follow.username}"}, status =200)
 
 
-class UnfollowUserView(APIView):
+class UnfollowUserView(generics.GenericAPIView):
+    queryset=CustomUser.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
     @action (detail=True, methods={'post'})
