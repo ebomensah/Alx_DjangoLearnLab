@@ -7,5 +7,11 @@ class Post (models.Model):
     published_date = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(default='default.jpg', 
+    upload_to='profile_pics')
+    
+    def __str__(self):
+        return f"{self.user.username} Profile"
 # Create your models here.
