@@ -29,33 +29,14 @@ class ProfileView(DetailView):
     def get_object(self, queryset=None):
         return self.request.user
 
-
 class UserUpdateView(UpdateView):
     model = User
     form_class = UserUpdateForm
     template_name = "blog/user_update.html"  
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('profile') 
 
     def get_object(self, queryset=None):
-        user = self.request.user
-        return user
-
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        context['user_form'] = self.get_form()
-        return self.render_to_response(context)
-
-    def post(self, request, *args, **kwargs):
-        user_form = self.get_form()
-
-        if user_form.is_valid():
-            user_form.save()
-            return redirect(self.success_url)
-
-        context = self.get_context_data()
-        context['user_form'] = user_form
-        return self.render_to_response(context)
-
+        return self.request.user
 
 class ProfileUpdateView(UpdateView):
     model = Profile
@@ -66,28 +47,20 @@ class ProfileUpdateView(UpdateView):
     def get_object(self, queryset=None):
         return self.request.user.profile
 
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        context = self.get_context_data()
-        context['user_form'] = UserUpdateForm(instance=request.user)
-        return self.render_to_response(context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_form'] = UserUpdateForm(instance=self.request.user)
+        return context
 
-    def post(self, request, *args, **kwargs):
-        profile_form = self.get_form()
-
-        if profile_form.is_valid():
-            self.object = profile_form.save()
-            
-            user_form = UserUpdateForm(request.POST, instance=request.user)
+    def form_valid(self, form):
+        # Check if the request method is POST
+        if self.request.method == 'POST':
+            profile = form.save()
+            user_form = UserUpdateForm(self.request.POST, instance=self.request.user)
             if user_form.is_valid():
                 user_form.save()
 
             return redirect(self.success_url)
-
-        context = self.get_context_data()
-        context['user_form'] = UserUpdateForm(instance=request.user)
-        context['profile_form'] = profile_form
-        return self.render_to_response(context)
-   
-
-# Create your views here.
+        else:
+            # You can return some other response here if it's not a POST request
+            return super().form_invalid(form)
