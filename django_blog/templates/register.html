@@ -3,12 +3,13 @@
 {% block title %}Register {% endblock %}
 
 {% block content %}
+<div class = "register-container">
 <h1>Create a New Account</h1>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Register</button>
 </form>
-
+</div>
 <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
 {% endblock %}
