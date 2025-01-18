@@ -31,7 +31,7 @@ class LogoutView(View):
 class ProfileView(DetailView):
     model = User
     template_name = 'blog/profile.html'
-    context_object_name = 'profile'
+    context_object_name = 'user'
 
     def get_object(self, queryset=None):
         return self.request.user
