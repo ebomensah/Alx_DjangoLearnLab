@@ -10,10 +10,10 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile 
 
 class LoginView(LoginView):
-    template_name = 'login.html'
+    template_name = 'blog/login.html'
 
 class RegisterView(SuccessMessageMixin, CreateView):
-    template_name = 'register.html'
+    template_name = 'blog/register.html'
     success_url = reverse_lazy('login')
     form_class = RegistrationForm
     success_message = "Your profile was created successfully"
@@ -23,7 +23,7 @@ class LogoutView(LogoutView):
 
 class ProfileView(DetailView):
     model = User
-    template_name = 'profile.html'
+    template_name = 'blog/profile.html'
     context_object_name = 'profile'
 
     def get_object(self, queryset=None):
@@ -32,7 +32,7 @@ class ProfileView(DetailView):
 class UserUpdateView(UpdateView):
     model = User
     form_class = UserUpdateForm
-    template_name = "user_update.html"  
+    template_name = "blog/user_update.html"  
     success_url = reverse_lazy('profile') 
 
     def get_object(self, queryset=None):
@@ -41,7 +41,7 @@ class UserUpdateView(UpdateView):
 class ProfileUpdateView(UpdateView):
     model = Profile
     form_class = ProfileUpdateForm
-    template_name = "profile_update.html"
+    template_name = "blog/profile_update.html"
     success_url = reverse_lazy('profile')
 
     def get_object(self, queryset=None):
