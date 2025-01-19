@@ -2,7 +2,7 @@ from django.urls import path, include
 from .views import LoginView, LogoutView, RegisterView, ProfileView, UserUpdateView, ProfileUpdateView
 from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 from .views import CommentCreateView, CommentUpdateView, CommentDeleteView
-from .views import posts_by_tag, search_posts 
+from .views import PostByTagListView, search_posts 
 
 
 urlpatterns = [
@@ -20,6 +20,6 @@ urlpatterns = [
     path('post/<int:pk>/comments/new/', CommentCreateView, name='add-comment'),
     path('comment/<int:pk>/update/', CommentUpdateView.as_view(), name='comment-update'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
-    path('tags/<str:tag_name>/', posts_by_tag, name='posts-by-tag'),
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='posts-by-tag'),
     path('search/', search_posts, name='search-posts'),
 ]
