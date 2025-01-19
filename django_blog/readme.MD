@@ -101,6 +101,30 @@ Session Handling: Django securely manages sessions and automatically handles coo
 Security settings can be reviewed and customized in settings.py.
 
 
+URL Configuration
+The following paths are available:
+
+/login/ – Login page
+/logout/ – Logout page
+/profile/ – View logged-in user's profile
+/update_profile/ – Update the logged-in user's profile
+/posts/ – View the list of blog posts
+/posts/new/ – Create a new post (requires login)
+/posts/<post_id>/ – View a single blog post's details
+/posts/<post_id>/edit/ – Edit an existing post (requires login, only for the author)
+/posts/<post_id>/delete/ – Delete an existing post (requires login, only for the author)
+
+SETTING UP THE COMMENT MODEL
+Open your models.py file in the blog app.
+Add the Comment model
+Run migrations to apply changes to the database
+Create Comment Forms
+Implement Comment Views
+Set Up Comment Templates
+Define URL patterns
+Test Comment Functionality
+
+
 
 
 

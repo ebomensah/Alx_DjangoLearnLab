@@ -1,7 +1,46 @@
-{% extends 'blog/base.html' %}
+{% extends "blog/base.html" %}
+
+{% block title %}
+{{ post.title }} - Blog Post
+{% endblock %}
 
 {% block content %}
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.content }}</p>
-  <p><strong>Author:</strong> {{ post.author }}</p>
+<article>
+    <h2>{{ post.title }}</h2>
+    <p>By <strong>{{ post.author }}</strong> on {{ post.created_at|date:"d M, Y H:i" }}</p>
+    <div>
+        {{ post.content|linebreaks }}
+    </div>
+</article>
+
+<hr>
+
+<!-- Display existing comments -->
+<div class="comments-section">
+    <h3>Comments</h3>
+    <ul>
+        {% for comment in post.comments.all %}
+        <li>
+            <p><strong>{{ comment.author }}</strong>: {{ comment.content }}</p>
+            <small>{{ comment.created_at|date:"d M, Y H:i" }}</small>
+        </li>
+        {% empty %}
+        <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+    </ul>
+</div>
+
+<hr>
+
+<!-- Add comment form -->
+{% if user.is_authenticated %}
+<h3>Leave a Comment</h3>
+<form method="post" action="{% url 'add-comment' post.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
+{% else %}
+<p>Please <a href="{% url 'login' %}">login</a> to leave a comment.</p>
+{% endif %}
 {% endblock %}
