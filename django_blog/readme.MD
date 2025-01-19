@@ -124,6 +124,41 @@ Set Up Comment Templates
 Define URL patterns
 Test Comment Functionality
 
+Tagging Blog Posts
+Tags allow users to categorize blog posts into relevant topics, making content easier to discover. To use tags in blog posts:
+
+Adding Tags to Blog Posts
+
+In the admin interface or when creating or editing a post via the API, you will see a Tags field.
+You can add multiple tags by typing them into the Tags field. Use commas to separate each tag (e.g., Technology, Python, Django).
+Tags will be automatically associated with the blog post once saved.
+Displaying Tags
+
+Tags associated with a blog post will be displayed prominently on the post's detail page, often in a list or cloud-like display. These tags are clickable links.
+Creating Custom Tags
+
+Users can freely add any tag as long as it's relevant to the content of the post. Tags can be a single word, phrases, or topics.
+Tag Management
+
+You can view all tags associated with the posts in the admin panel, allowing for easy editing or removal.
+Searching for Blog Content
+The blog has an integrated search bar to help users easily find content based on keywords, tags, or phrases.
+
+Using the Search Bar
+
+To search for posts, simply type a keyword, tag, or phrase in the search bar at the top of the blog site.
+Press the Enter key or click the Search icon to begin your search.
+Search Functionality
+
+The search will return posts that match the keyword, including the post's title, body content, and any tags that match the search term.
+Tags are indexed separately, so typing a tag will return all posts related to that tag.
+Filter Search Results
+
+Users can narrow down the results based on specific tags by clicking the tag in a post or search result page.
+Posts will be displayed with snippets of content that match the search query, providing context to the user.
+Advanced Search Features (Optional)
+
+Depending on the implementation, the search functionality could include features like filtering by post date or category, or sorting search results by relevance.
 
 
 

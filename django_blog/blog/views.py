@@ -121,6 +121,15 @@ class PostListView(ListView):
     template_name = 'blog/post_list.html'
     context_object_name='posts'
 
+from django.db.models import Q
+
+def search_posts(request):
+    query = request.GET.get('q')
+    posts = Post.objects.filter(
+        Q(title__icontains=query) | Q(content__icontains=query) | Q(tags__name__icontains=query)
+    ).distinct()
+    return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
+
 
 class PostDetailView(DetailView):
     model = Post
@@ -161,3 +170,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return post.author == self.request.user
+
+def posts_by_tag(request, tag_name):
+    posts = Post.objects.filter(tags__name=tag_name)
+    return render(request, 'blog/posts_by_tag.html', {'posts': posts, 'tag_name': tag_name})
